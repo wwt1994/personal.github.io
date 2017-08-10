@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/jquery.fullpage.css">
+    <link rel="stylesheet" href="font_cgztspup40z1if6r/iconfont.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.fullpage.min.js"></script>
+</head>
+<script>
+
+    $(function(){
+
+
+        $("#dowebok").fullpage({
+            //设置背景色
+            sectionsColor: ['#1bbc9b','#ffffff','#7baabe','#FF1493'],
+            anchors: ['page1', 'page2', 'page3', 'page4'],
+            menu:'#menu',
+            loopBottom: true,
+        })
+        $('#menu>li').mouseover(function(){
+            $(this).css({transform:'rotate(-30deg)'});
+            $(this).find('a').css({color:'#FFFFFF'});
+        })
+        $('#menu>li').mouseout(function(){
+            $(this).css({transform:'rotate(0deg)'});
+            $(this).find('a').css({color:'#EFFFFF'});
+        })
+        
+        //背景
+        let index = 1;
+        let t = setInterval(move,2000);
+        function move(){
+            let imgSrc = `url(img/bg${index}.jpg)`;
+            index++;
+            if(index==5){
+                index = 1;
+            }
+            $('.bg').css({backgroundImage:imgSrc});
+        }
+
+
+
+        // 钟表
+
+        let clock=document.querySelector(".clock");
+        creatmark();
+        let time=new Date();
+
+        let tt=creackposite(8,60,"#fff",time.getHours()*30+time.getMinutes()*6);
+        let ff=creackposite(6,100,"#fff",time.getMinutes()*6);
+        let mm=creackposite(4,120,"#fff",time.getSeconds()*6);
+
+        setInterval(function(){
+            let time=new Date();
+            tt.style.transform="translate("+(300-tt.w)/2+"px,"+(150-tt.h)+"px) rotate("+time.getHours()*30+time.getMinutes()*6+"deg)"
+            ff.style.transform="translate("+(300-ff.w)/2+"px,"+(150-ff.h)+"px) rotate("+time.getMinutes()*6+"deg)"
+            mm.style.transform="translate("+(300-mm.w)/2+"px,"+(150-mm.h)+"px) rotate("+time.getSeconds()*6+"deg)"
+        },1000)
+        function creatmark(){
+
+            for(let i=0;i<60;i++){
+                let w,h;
+                if(i%5==0){
+                    w=4;
+                    h=8;
+                }else{
+                    w=2;
+                    h=6;
+                }
+                let div=document.createElement("div");
+                div.style.cssText=("width:"+w+"px;height:"+h+"px;background:#fff;position:absolute;top:0;left:0");
+                div.style.transform="translate("+(300-w)/2+"px,0) rotate("+i*6+"deg)";
+                div.style.transformOrigin="center 150px";
+                clock.appendChild(div);
+            }
+        };
+        function creackposite(w,h,c,a){
+            let div=document.createElement("div");
+            div.style.cssText="width:"+w+"px;height:"+h+"px;background:"+c+";position:absolute;top:0;left:0";
+            div.style.transform="translate("+(300-w)/2+"px,"+(150-h)+"px) rotate("+a+"deg)";
+            div.w=w;
+            div.h=h;
+            div.style.transformOrigin="center bottom";
+            clock.appendChild(div);
+            return div;
+        }
+
+        let t1=setInterval(function(){})
+
+
+        //关于我
+        $('.section').eq(1).mouseover(function(){
+            for(let i=0;i<$('.jieshao>p').length;i++){
+                $('.jieshao>p').eq(i)
+                    .delay(500*i)
+                    .animate({top:50*i})
+            }
+
+        })
+
+
+        //进度条
+        let in1 = 0,in2 = 0,in3 = 0,in4 = 0;
+        $('.section').eq(2).mouseover(function(){
+            let t1 = setInterval(js,60);
+            function js(){
+                in1++,in2++,in3++,in4++;
+                if(in1 > 90||in2 > 92||in3 > 83||in4 > 75){
+                    in1=90;
+                    in2=92;
+                    in3=83;
+                    in4=75;
+                }
+                $('.tiao1').eq(0).css({width:`${in1}%`});
+                $('strong').eq(0).html(in1);
+                $('.tiao1').eq(1).css({width:`${in2}%`});
+                $('strong').eq(1).html(in2);
+                $('.tiao1').eq(2).css({width:`${in3}%`});
+                $('strong').eq(2).html(in3);
+                $('.tiao1').eq(3).css({width:`${in4}%`});
+                $('strong').eq(3).html(in4);
+            }
+
+        })
+
+        //我的作品
+        $('.gongge').mouseover(function(){
+            $(this).find('img').css({transform: 'scale(1,1)'});
+            $(this).find('.zhezhao').css({background: 'rgba(0,0,0,.7)'});
+            $(this).find('p').css({top:'43%'});
+            $(this).find('p').eq(4).css({top:0});
+
+        })
+        $('.gongge').mouseout(function(){
+            $(this).find('img').css({transform: 'scale(1.5,1.5)'});
+            $(this).find('.zhezhao').css({background: 'rgba(0,0,0,0)'});
+            $(this).find('p').css({top:'100%'});
+        })
+    })
+</script>
+<body>
+
+    <ul id="menu">
+        <li data-menuanchor="page1"><a href="#page1"><i class="iconfont icon-shouye-shouye"></i>首页</a></li>
+        <li data-menuanchor="page2"><a href="#page2"><i class="iconfont icon-guanyuwomen"></i>关于我</a></li>
+        <li data-menuanchor="page3"><a href="#page3"><i class="iconfont icon-huizhang"></i>我的技能</a></li>
+        <li data-menuanchor="page4"><a href="#page4"><i class="iconfont icon-zuopin"></i>我的作品</a></li>
+    </ul>
+    <div id="dowebok">
+
+        <div class="section">
+            <div class="erji">
+                <div class="bg"></div>
+                <div class="zhao">
+                    <div class="clock">
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(0deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(6deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(12deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(18deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(24deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(30deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(36deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(42deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(48deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(54deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(60deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(66deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(72deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(78deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(84deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(90deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(96deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(102deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(108deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(114deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(120deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(126deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(132deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(138deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(144deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(150deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(156deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(162deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(168deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(174deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(180deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(186deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(192deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(198deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(204deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(210deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(216deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(222deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(228deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(234deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(240deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(246deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(252deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(258deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(264deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(270deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(276deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(282deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(288deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(294deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(300deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(306deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(312deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(318deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(324deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(330deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(336deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(342deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(348deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:2px;height:6px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(354deg);transform-origin: center 150px 0px; "></div>
+                        <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(360deg);transform-origin: center 150px 0px; "></div>
+
+
+                    </div>
+                    <h1>张弘</h1>
+                    <h3>前端工程师</h3>
+                    <p>不管天气怎样，无论什么地方，都要带着自己的阳光</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="imgBox"></div>
+            <div class="jieshao">
+                <p>我是张弘</p>
+                <p>我是一名前端工程师</p>
+                <p>微博：弘妮子</p>
+                <p>教育背景：大学本科</p>
+                <p>QQ：326534988</p>
+                <p>邮箱：326534988@qq.com</p>
+                <p>喜欢代码，更加享受写代码的思考过程，和效果实现的一瞬间</p>
+            </div>
+        </div>
+        <div class="section">
+            <ul class="jineng">
+                <li class="jindu">
+                    <div class="icon">
+                        <i class="iconfont icon-html-copy"></i>
+                    </div>
+                    <div class="jianjie">
+                        <p>HTML</p>
+
+                        <p>html是一种超文本语言，即页面中可以包含图片，音乐，链接。熟悉html，能够运用html对页面布局，完成网页的制作与开发。熟悉html5中新增的的表单属性、canvas，并且运用canvas制作并完成了画图工具。</p>
+                        <div class="zw">
+                            <div class="zhangwo">掌握情况</div>
+                            <div class="tiao">
+                                <div class="tiao1"></div>
+                                <span><strong>0</strong>%</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="jindu">
+                    <div class="icon">
+                        <i class="iconfont icon-css3"></i>
+                    </div>
+                    <div class="jianjie">
+                        <p>CSS</p>
+                        <p>css是用来控制网页的样式和布局。熟悉css3新增属性，运用css3完成了3d翻转，以及房子场景的制作。</p>
+                        <div class="zw">
+                            <div class="zhangwo">掌握情况</div>
+                            <div class="tiao">
+                                <div class="tiao1"></div>
+                                <span><strong>0</strong>%</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="jindu">
+                    <div class="icon">
+                        <i class="iconfont icon-js"></i>
+                    </div>
+                    <div class="jianjie">
+                        <p>JS</p>
+
+                        <p>javascript是一种基于对象的脚本语言，在html中嵌入动态文本，对浏览器的事件做出响应，他有六种数据类型，分别是number、string、boolean、undeerfined、null、object，熟练掌握javascript原声编写方式以及jquery的使用</p>
+                        <div class="zw">
+                            <div class="zhangwo">掌握情况</div>
+                            <div class="tiao">
+                                <div class="tiao1"></div>
+                                <span><strong>0</strong>%</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="jindu">
+                    <div class="icon">
+                        <i class="iconfont icon-jquery"></i>
+                    </div>
+                    <div class="jianjie">
+                        <p>JQUERY</p>
+
+                        <p>jquery,提供了大量的选择器，可以让我们方便的获取，可以隐式循环和链式调用，非常方便</p>
+                        <div class="zw">
+                            <div class="zhangwo">掌握情况</div>
+                            <div class="tiao">
+                                <div class="tiao1"></div>
+                                <span><strong>0</strong>%</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="section">
+            <div class="jiugg">
+                <ul class="jiu">
+                    <li class="gongge">
+                        <img src="img/zp1.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">Bootstrap响应式</a>
+                            </p>
+
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/zp2.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">小米商城</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/zp3.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">打字游戏</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/zp4.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">天猫商城</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/zp5.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <span>作品展示</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/zp6.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">个人响应式页面</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/zp7.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">音乐播放器</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/zp8.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">扑克牌游戏</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="gongge">
+                        <img src="img/bg.jpg" alt="">
+                        <div class="zhezhao">
+                            <p>
+                                <a href="#">手机端页面</a>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+    text-decoration: none;
+}
+#menu{
+    width:205px;
+    height: 100%;
+    margin:0 auto;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 9999;
+    background: #000000;
+    box-sizing: border-box;
+    padding-top:150px;
+}
+#menu>li{
+    width:150px;
+    margin-top:40px;
+    box-sizing: border-box;
+    transition: all ease 0.5s;
+}
+#menu>li>a{
+    font-size: 20px;
+    color:#EFFFFF;
+}
+.section{
+    padding-left:205px;
+    position: relative;
+}
+.icon-shouye-shouye:before,.icon-guanyuwomen:before,.icon-huizhang:before,.icon-zuopin:before{
+    font-size: 18px;
+    color:#ffffff;
+    margin-right:10px;
+}
+.erji{
+    width:100%;
+    height:100%;
+    position: relative;
+}
+.erji>.bg{
+    width:100%;
+    height:100%;
+    background-image:url(../img/bg1.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.erji>.zhao{
+    width:100%;
+    height: 100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    padding-top:400px;
+}
+.erji>.zhao>.clock{
+    width:300px;
+    height:300px;
+    position: absolute;
+    top:30px;
+    left:0;
+    right:0;
+    margin:auto;
+}
+.erji>.zhao>h1{
+    width:100%;
+    text-align: center;
+    color:#ffffff;
+    margin-top:12px;
+}
+.erji>.zhao>h3{
+    width:100%;
+    text-align: center;
+    color:#ffffff;
+    margin-top:12px;
+}
+.erji>.zhao>p{
+    width:100%;
+    text-align: center;
+    color:#ffffff;
+    font-size: 16px;
+    margin-top:12px;
+}
+.imgBox{
+    width:270px;
+    height:400px;
+    background-image:url(../img/bj.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left:245px;
+    margin:auto;
+}
+.jieshao{
+    width:600px;
+    height: 400px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right:140px;
+    margin:auto;
+}
+.jieshao>p{
+    width:100%;
+    height: 40px;
+    font-size: 20px;
+    color:#000000;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top:600px;
+    left:0;
+}
+.jieshao>p:nth-child(1){
+    font-size: 28px;
+    height: 50px;
+    padding-bottom: 10px;
+}
+
+.jineng{
+    width:100%;
+    height:100%;
+}
+.jineng>.jindu{
+    width:100%;
+    height:25%;
+    background: #0C1729;
+    box-sizing: border-box;
+    border-bottom:1px solid #ffffff;
+    padding:20px 60px 0 60px;
+}
+.jineng>.jindu>.icon{
+   width: 100px;
+    height:100px;
+    float:left;
+}
+.icon-html-copy:before,.icon-css3:before,.icon-js:before,.icon-jquery:before{
+    font-size: 60px;
+    color:#ffffff;
+}
+.jineng>.jindu>.jianjie{
+    width:924px;
+    float:left;
+}
+.jineng>.jindu>.jianjie>p{
+    font-size: 16px;
+    color:#ffffff;
+    text-align: center;
+    padding-bottom:10px;
+}
+.jineng>.jindu>.jianjie>p:nth-child(1){
+    text-align: left;
+    font-size: 24px;
+    color: #FF1493;
+    font-weight: 600;
+}
+.jineng>.jindu>.jianjie>.zw{
+    background: red;
+}
+.jineng>.jindu>.jianjie>.zw>.zhangwo{
+    font-size: 20px;
+    color:#FFFFFF;
+    float:left;
+}
+.jineng>.jindu>.jianjie>.zw>.tiao{
+    width:480px;
+    height:20px;
+    background: rgba(255,255,255,1);
+    border-radius: 5px;
+    float:left;
+    position:relative;
+    margin:5px 0 0 20px;
+    text-align: right;
+}
+.jineng>.jindu>.jianjie>.zw>.tiao>.tiao1{
+    width:0%;
+    height:100%;
+    background: #FF1493;
+    border-radius: 5px;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.jiugg{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+.jiugg>.jiu{
+    width:90%;
+    height:90%;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+}
+.jiugg>.jiu>.gongge{
+    width:33.3%;
+    height:33.3%;
+    float:left;
+    overflow: hidden;
+    position:relative;
+
+}
+.jiugg>.jiu>.gongge>img{
+    width:100%;
+    height:100%;
+    display: block;
+    transform: scale(1.5,1.5);
+}
+.jiugg>.jiu>.gongge>.zhezhao{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background: rgba(0,0,0,0);
+    transition: all ease 1s;
+}
+.jiugg>.jiu>.gongge>.zhezhao>p{
+    width:100%;
+    text-align: center;
+    position:absolute;
+    top:100%;
+    left:0;
+    transition: all ease 1s;
+}
+.jiugg>.jiu>.gongge>.zhezhao>p>a{
+    font-size: 26px;
+    color:#ffffff;
+}
+.jiugg>.jiu>.gongge>.zhezhao>p>span{
+    font-size: 40px;
+    color: #ff6635;
+}
