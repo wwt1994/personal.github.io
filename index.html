@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/jquery.fullpage.css">
     <link rel="stylesheet" href="font_cgztspup40z1if6r/iconfont.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/swiper.min.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.fullpage.min.js"></script>
 </head>
@@ -16,7 +18,7 @@
 
         $("#dowebok").fullpage({
             //设置背景色
-            sectionsColor: ['#1bbc9b','#ffffff','#7baabe','#FF1493'],
+            sectionsColor: ['#fff','#ffffff','#7baabe','#FF1493'],
             anchors: ['page1', 'page2', 'page3', 'page4'],
             menu:'#menu',
             loopBottom: true,
@@ -31,7 +33,7 @@
         })
         
         //背景
-        let index = 1;
+        /*let index = 1;
         let t = setInterval(move,2000);
         function move(){
             let imgSrc = `url(img/bg${index}.jpg)`;
@@ -40,7 +42,20 @@
                 index = 1;
             }
             $('.bg').css({backgroundImage:imgSrc});
-        }
+        }*/
+
+        //背景图片
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            paginationClickable: true,
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: 2500,
+            autoplayDisableOnInteraction: false,
+            loop: true
+        });
 
 
 
@@ -154,7 +169,23 @@
 
         <div class="section">
             <div class="erji">
-                <div class="bg"></div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/bg1.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/bg2.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/bg3.jpg" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/bg4.jpg" alt="">
+                        </div>
+                    </div>
+
+                </div>
                 <div class="zhao">
                     <div class="clock">
                         <div style="width:4px;height:8px;background:rgb(255,255,255);position: absolute;top:0;left:0;transform:translate(148px,0px) rotate(0deg);transform-origin: center 150px 0px; "></div>
@@ -230,12 +261,12 @@
         <div class="section">
             <div class="imgBox"></div>
             <div class="jieshao">
-                <p>我是张弘</p>
+                <p style="color: #FF1493;">我是张弘</p>
                 <p>我是一名前端工程师</p>
                 <p>微博：弘妮子</p>
                 <p>教育背景：大学本科</p>
-                <p>QQ：326534988</p>
-                <p>邮箱：326534988@qq.com</p>
+                <p>电话：13994501847</p>
+                <p>邮箱：13994501847@163.com</p>
                 <p>喜欢代码，更加享受写代码的思考过程，和效果实现的一瞬间</p>
             </div>
         </div>
@@ -296,9 +327,9 @@
                         <i class="iconfont icon-jquery"></i>
                     </div>
                     <div class="jianjie">
-                        <p>JQUERY</p>
+                        <p>PHP</p>
 
-                        <p>jquery,提供了大量的选择器，可以让我们方便的获取，可以隐式循环和链式调用，非常方便</p>
+                        <p>php,PHP具备成熟的开源代码及模板，主要用于API接口开发，后台系统管理和web动态网站开发。</p>
                         <div class="zw">
                             <div class="zhangwo">掌握情况</div>
                             <div class="tiao">
@@ -317,7 +348,7 @@
                         <img src="img/zp1.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">Bootstrap响应式</a>
+                                <a href="https://wwt1994.github.io/bootstrap/">响应式</a>
                             </p>
 
                         </div>
@@ -326,7 +357,7 @@
                         <img src="img/zp2.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">小米商城</a>
+                                <a href="https://wwt1994.github.io/">个人博客</a>
                             </p>
                         </div>
                     </li>
@@ -334,7 +365,7 @@
                         <img src="img/zp3.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">打字游戏</a>
+                                <a href="https://wwt1994.github.io/Game1/">打字游戏</a>
                             </p>
                         </div>
                     </li>
@@ -342,7 +373,7 @@
                         <img src="img/zp4.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">天猫商城</a>
+                                <a href="http://zhktv1.duapp.com">麦霸一点通</a>
                             </p>
                         </div>
                     </li>
@@ -358,7 +389,7 @@
                         <img src="img/zp6.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">个人响应式页面</a>
+                                <a href="http://zhangusj.duapp.com">优设计</a>
                             </p>
                         </div>
                     </li>
@@ -366,7 +397,7 @@
                         <img src="img/zp7.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">音乐播放器</a>
+                                <a href="https://wwt1994.github.io/Game2/">扑克牌游戏</a>
                             </p>
                         </div>
                     </li>
@@ -374,7 +405,7 @@
                         <img src="img/zp8.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">扑克牌游戏</a>
+                                <a href="http://zhnewss.duapp.com">速新闻</a>
                             </p>
                         </div>
                     </li>
@@ -382,7 +413,7 @@
                         <img src="img/bg.jpg" alt="">
                         <div class="zhezhao">
                             <p>
-                                <a href="#">手机端页面</a>
+                                <a href="http://nodess.duapp.com">智谈聊天室</a>
                             </p>
                         </div>
                     </li>
